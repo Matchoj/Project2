@@ -1,11 +1,12 @@
 import time
 import datetime
 import os
-# DATA
 
+# auxiliary variables
 re1=0
 re2=0
-# STAGE 1 program makes Directory and files witch are necessery for it's fuctionation
+
+# Upload data
 dir_path=r'c:\Projects\Timecounter'
 path=r'c:\Projects\Timecounter\path_doc.txt'
 os.path.isdir(dir_path) or os.makedirs(r"c:\Projects\Timecounter")
@@ -17,14 +18,14 @@ else:
     file.close()
 
 
-#STAGE 2  display main manu with available fintions
+# display main manu with available functions
 def mainmanu(*args):
     values=[]
     for i in menulist:
         print("{} -- {}".format(menulist.index(i) + 1, i.__name__))
 
 
-#STAGE 3  this function cheack if user choose available option and returns to it
+# this function check if users choose is available option and returns it
 def answer(arg,arg1):
     while True:
         try:
@@ -41,7 +42,7 @@ def answer(arg,arg1):
     return chooseint
 
 
-# Stage 4 This function save starting time and retuns it aslo it create file with name of the month
+# This function save starting time and returns it, also it create file with name of the month
 def Start_learning():
     start=time.time()
     basename="{}.txt".format(datetime.date.today().strftime("%Y-%m"))
@@ -58,7 +59,7 @@ def Start_learning():
     menulist[0]=Stop_learning
     return start, file
 
-
+# This function saves results
 def Stop_learning(arg1=re1,arg2=re2):
         stop=time.time()
         with open(re2,"a") as f:
@@ -66,6 +67,7 @@ def Stop_learning(arg1=re1,arg2=re2):
         menulist[0]=Start_learning
         return stop,re2
 
+# This function allow to change directory results file
 def Change_Directory():
     NewPath=input("Please inseret path where you what to  storage files: ")
     try:
@@ -82,7 +84,7 @@ def Change_Directory():
         Change_Directory()
         return 1,2
 
-
+# Displaying  file
 def Show_File():
     with open(path) as f:
         text=f.read()
@@ -97,6 +99,7 @@ def Show_File():
             print(f.read())
     return 1,2
 
+# Exit program
 def Exit():
     Quit= False
     return Quit,1
